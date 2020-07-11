@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Animated, Easing } from 'react-native';
+import { Image, Animated, Easing, TouchableOpacity } from 'react-native';
 
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import { Video } from 'expo-av';
@@ -52,9 +52,20 @@ const Feed: React.FC<Props> = ({ play, item }) => {
     outputRange: ['0deg', '360deg'],
   });
 
+  let videoRef;
+  const _handleVideoRef: void = component => {
+    videoRef = component;
+  }
+  const videoPressed: void = (e) => {
+    play = !play;
+    if(play) videoRef.playAsync();
+    else videoRef.pauseAsync();
+  }
+
   return (
     <>
-      <LinearGradient
+      <TouchableOpacity
+        onPress={videoPressed}
         colors={['rgba(0,0,0,.3)', 'transparent']}
         style={{
           position: 'absolute',
@@ -66,6 +77,7 @@ const Feed: React.FC<Props> = ({ play, item }) => {
       />
       <Container>
         <Video
+          ref={_handleVideoRef}
           source={{ uri: item.uri }}
           rate={1.0}
           volume={1.0}

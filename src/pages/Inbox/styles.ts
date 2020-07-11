@@ -22,3 +22,18 @@ export const Title = styled.Text`
   font-size: 18px;
   font-weight: bold;
 `;
+
+export const Card = styled.View`
+  padding: 10px;
+  border-bottom-width: 0.5px;
+  border-bottom-color: #dadada; 
+`;
+
+export const Comment = styled.Text`
+`;
+
+export const Author = styled.Text`
+  fontWeight: bold;
+  paddingBottom: 5px;
+`;
+
