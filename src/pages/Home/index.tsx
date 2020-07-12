@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import ViewPager from '@react-native-community/viewpager';
@@ -7,20 +7,7 @@ import Feed from './Feed';
 
 import { Container, Header, Text, Tab, Separator } from './styles';
 
-const useFetch: object = (url: string) => {
-  const [data: object, setData] = useState({});
-
-  useEffect(() => {
-    async function fetchData(): Promise<void> {
-      const response = await fetch(url);
-      const json = await response.json();
-      setData(json);
-    }
-    fetchData();
-  }, [url]);
-
-  return data;
-};
+import useFetch from '../../utils/useFetch';
 
 const Home: React.FC = () => {
   const [tab, setTab] = useState(1);

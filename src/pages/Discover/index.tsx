@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
@@ -9,20 +9,7 @@ import Feed from '../Home/Feed';
 
 import { Container, Search, Header, Input } from './styles';
 
-const useFetch: object = (url: string) => {
-  const [data: object, setData] = useState({});
-
-  useEffect(() => {
-    async function fetchData(): Promise<void> {
-      const response = await fetch(url);
-      const json = await response.json();
-      setData(json);
-    }
-    fetchData();
-  }, [url]);
-
-  return data;
-};
+import useFetch from '../../utils/useFetch';
 
 const Discover: React.FC = () => {
   const [query, setQuery] = useState('');
