@@ -26,8 +26,8 @@ const Home: React.FC = () => {
   const [tab, setTab] = useState(1);
   const [active, setActive] = useState(0);
 
-  let posts;
-  const data = useFetch(global.makeURL("/feeds/user/1"));
+  let posts: markup;
+  const data: object = useFetch(global.api.makeURL("/feeds/user/1"));
 
   if(data.success) {
     posts =

@@ -30,8 +30,8 @@ const Discover: React.FC = () => {
   const [tab, setTab] = useState(1);
   const [active, setActive] = useState(0);
 
-  let posts;
-  const data = useFetch(global.makeURL(`/feeds/public?q=${encodeURIComponent(query)}`));
+  let posts: markup;
+  const data: object = useFetch(global.api.makeURL(`/feeds/public?q=${encodeURIComponent(query)}`));
 
   const onSubmitEdit: void = (e) => {
     setQuery(e.nativeEvent.text);

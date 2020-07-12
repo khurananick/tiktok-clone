@@ -24,7 +24,7 @@ const useFetch: object = (url: string) => {
 
 const Inbox: React.FC = () => {
   let comments;
-  const data = useFetch(global.makeURL(`/comments/user/abc`));
+  const data = useFetch(global.api.makeURL(`/comments/user/abc`));
   if(data.success) {
     comments =
         <View>
