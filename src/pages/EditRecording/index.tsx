@@ -25,7 +25,7 @@ const EditRecording: React.FC = (props) => {
     console.log(props.route.params.recording);
   });
 
-  const savePost: boolean = async (data) => {
+  const savePost: void = async (data) => {
     const path = global.api.makeURL(`/posts`);
     const formData = new FormData();
     const fileName = data.asset_uri.split("\/")[data.asset_uri.split("\/").length-1];
@@ -47,15 +47,17 @@ const EditRecording: React.FC = (props) => {
           body: formData
       });
       const responseJson = await response.json();
-      if(responseJson.success)
+      if(responseJson.success) {
         Alert.alert("Posted!", "", [{
           text: "OK", onPress: () => {navigation.goBack()}
         }]);
-      return true;
+      } else throw "Error uploading post."
     }
     catch (error) {
       console.log('error : ' + error);
-      return false;
+      Alert.alert("Error", "Oops... an error occured.", [{
+        text: "OK", onPress: () => {}
+      }]);
     }
   }
 
@@ -73,9 +75,9 @@ const EditRecording: React.FC = (props) => {
           </Button>
           <Button
             onPress={async () => {
-              const post = await savePost({
-                            asset_uri: props.route.params.recording.uri
-                          });
+              savePost({
+                asset_uri: props.route.params.recording.uri
+              });
             }}>
             <MaterialCommunityIcons
               name="check-outline"
