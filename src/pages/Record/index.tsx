@@ -6,6 +6,7 @@ import {
   MaterialCommunityIcons,
   AntDesign,
 } from '@expo/vector-icons';
+
 import { useNavigation } from '@react-navigation/native';
 import { Camera } from 'expo-camera';
 
@@ -44,7 +45,7 @@ const Record: React.FC = () => {
       quality: "480p",
       maxDuration: 10
     });
-    console.log(this.recording);
+    navigation.push("EditRecording", { recording: this.recording });
   }
 
   const doStopRecording: void = async () => {

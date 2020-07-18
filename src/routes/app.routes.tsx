@@ -15,6 +15,7 @@ import Home from '../pages/Home';
 import Inbox from '../pages/Inbox';
 import Me from '../pages/Me';
 import Record from '../pages/Record';
+import EditRecording from '../pages/EditRecording';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -126,6 +127,11 @@ const RootStackScreen: React.FC = () => {
         options={{ headerShown: false }}
         name="Record"
         component={Record}
+      />
+      <Stack.Screen
+        options={{ headerShown: false }}
+        name="EditRecording"
+        component={EditRecording}
       />
     </Stack.Navigator>
   );
