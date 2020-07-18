@@ -35,7 +35,7 @@ const Discover: React.FC = () => {
         initialPage={0}
       >
         {data.response.map(item => (
-          <View key={item.id}>
+          <View key={item._id}>
             <Feed item={item} play={false} />
           </View>
         ))}

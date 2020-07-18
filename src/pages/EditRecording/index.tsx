@@ -10,6 +10,8 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 
+import secret from '../../../secret.json';
+
 import {
   Container,
   Header,
@@ -42,7 +44,7 @@ const EditRecording: React.FC = (props) => {
           method: 'POST',
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': 'Bearer nknick1.dji3ofq8xc7vrqqo0hpbl.1594571782624'
+            'Authorization': `Bearer ${secret.nknick2}`
           },
           body: formData
       });

@@ -21,7 +21,7 @@ import {
 } from './styles';
 
 interface Item {
-  id: number;
+  id: string;
   username: string;
   tags: string;
   music: string;
@@ -78,7 +78,7 @@ const Feed: React.FC<Props> = ({ play, item }) => {
       <Container>
         <Video
           ref={_handleVideoRef}
-          source={{ uri: item.uri }}
+          source={{ uri: `${global.api.baseURL}/${item.uri}` }}
           rate={1.0}
           volume={1.0}
           isMuted={false}
@@ -93,10 +93,10 @@ const Feed: React.FC<Props> = ({ play, item }) => {
       </Container>
       <Details>
         <User>{item.username}</User>
-        <Tags>{item.tags}</Tags>
+        <Tags>{item.tags.join(", #")}</Tags>
         <MusicBox>
           <FontAwesome name="music" size={15} color="#f5f5f5" />
-          <Music>{item.music}</Music>
+          <Music>{(item.music||"None")}</Music>
         </MusicBox>
       </Details>
       <Actions>
@@ -107,7 +107,7 @@ const Feed: React.FC<Props> = ({ play, item }) => {
             size={35}
             color="#fff"
           />
-          <TextAction>{item.likes}</TextAction>
+          <TextAction>{item.likesCount}</TextAction>
         </BoxAction>
         <BoxAction>
           <FontAwesome
@@ -116,7 +116,7 @@ const Feed: React.FC<Props> = ({ play, item }) => {
             size={35}
             color="#fff"
           />
-          <TextAction>{item.comments}</TextAction>
+          <TextAction>{item.commentsCount}</TextAction>
         </BoxAction>
         <BoxAction>
           <FontAwesome
