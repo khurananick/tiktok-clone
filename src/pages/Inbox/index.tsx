@@ -7,20 +7,7 @@ import ViewPager from '@react-native-community/viewpager';
 
 import { Container, Title, Header, Card, Comment, Author } from './styles';
 
-const useFetch: object = (url: string) => {
-  const [data: object, setData] = useState({});
-
-  useEffect(() => {
-    async function fetchData(): Promise<void> {
-      const response = await fetch(url);
-      const json = await response.json();
-      setData(json);
-    }
-    fetchData();
-  }, [url]);
-
-  return data;
-};
+import useFetch from '../../utils/useFetch';
 
 const Inbox: React.FC = () => {
   let comments: markup;
