@@ -39,8 +39,20 @@ const Record: React.FC = () => {
     return <Text>No access to camera</Text>;
   }
 
+  const doStartRecording: void = async () => {
+    this.recording = await this.camera.recordAsync({
+      quality: "480p",
+      maxDuration: 10
+    });
+    console.log(this.recording);
+  }
+
+  const doStopRecording: void = async () => {
+    await this.camera.stopRecording();
+  }
+
   return (
-    <Camera style={{ flex: 1 }} type={type}>
+    <Camera style={{ flex: 1 }} type={type} ref={ref => { this.camera = ref }}>
       <Container>
         <Header>
           <Button
@@ -73,7 +85,7 @@ const Record: React.FC = () => {
             />
           </Button>
         </Header>
-        <RecordButton />
+        <RecordButton onLongPress={doStartRecording} onPressOut={doStopRecording} />
       </Container>
     </Camera>
   );
